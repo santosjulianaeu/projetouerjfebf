@@ -1,0 +1,37 @@
+import collections
+file = open('votos.txt','a')
+texto = open('votos.txt','r')
+
+
+
+voto = input()
+
+if (len(texto.read()) != 0 and len(voto) != 0) and len(voto) != 'sair':
+    file.write('\n')
+    
+texto.close()
+
+if voto == 'sair':
+    voto = '\nsair'
+
+
+
+while voto != '\nsair':
+    
+    file.write(voto)
+    voto = '\n'+input()
+    
+    
+file.close()
+
+texto = open('votos.txt','r')
+
+lista = texto.read().split('\n')
+for x in range(len(lista)):
+    lista[x] = lista[x].capitalize()    
+
+cont = collections.Counter(lista)
+
+for key, value in cont.items():
+    print(key, value)
+texto.close()
